@@ -29,17 +29,19 @@ void solveFirst(double x1, double y1, double x2, double y2, double x3, double y3
     cout << "Площадь пересечения: " << ans << endl;
 }
 
+double square(double a) { return a*a; }
+
 void solveSecond(double x, double y, double xa, double ya, double xb, double yb) {
-    double ans = 0;
-    double interval_len = pow((xb-xa), 2) + pow((yb-ya), 2);
+    double ans;
+    double interval_len = square(xb-xa) + square(yb-ya);
     // косое произведение**2/длина отрезка
-    double s = pow((xa-x)*(yb-y)-(xb-x)*(ya-y), 2)/interval_len;
+    double s = square((xa-x)*(yb-y)-(xb-x)*(ya-y))/interval_len;
     // скалярное произведение векторов (ba, bp) >= 0 и векторов (ab, ap) >= 0
     if ((xb-xa)*(x-xa) + (yb-ya)*(y-ya) >= 0 && (xa-xb)*(x-xb) + (ya-yb)*(y-yb) >=0)
         ans = sqrt(s);
     else {
-        double ap = sqrt(pow((xa-x),2) + pow((ya-y),2));
-        double bp = sqrt(pow((xb-x), 2) + pow((yb-y),2));
+        double ap = sqrt(square(xa-x) +square(ya-y));
+        double bp = sqrt(square(xb-x) + square(yb-y));
         ans = min(ap, bp);
     }
 
