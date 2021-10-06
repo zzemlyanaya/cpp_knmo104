@@ -3,47 +3,45 @@
 
 using namespace std;
 
-void doMagicYears(int years) {
-    int last = years%10;
-    if (years%100 == 11 || years%100 == 12 || years%100 == 13 || years%100 == 14)
-        cout << years << " лет";
-    else if (last == 1)
-        cout << years << " год";
-    else if (last == 2 || last == 3 || last == 4)
-        cout << years << " года";
-    else
-        cout << years << " лет";
-}
+void doMagic(int n) {
+    int m_multiplicity = 1; int m_del = 1;
+    int i;
+    int border = n;
+    bool has_dels_out = false;
 
-void doMagicGoat(double a, double l) {
-    double pi = 2*acos(0.0);
-    double res = 0;
-    if (l <= a/2) {
-        res = pi*l*l;
-    }
-    else if (l*l >= 2*a*a/4) {
-        res = a*a;
-    }
-    else {
-        double cos_half = a/(2*l);
-        double cos_full = 2*cos_half*cos_half - 1;
-        double phi = acos(cos_full);
-        double seg = 0.5*l*l*(phi - sin(phi));
-        res = pi*l*l - seg*4;
+    cout << n << " = ";
+
+    for (i = 2; i <= border; i++) {
+        int current_multiplicity = 0;
+
+        while (n%i == 0) {
+            if (has_dels_out)
+                cout << " * " << i;
+            else
+                cout << i;
+
+            has_dels_out = true;
+            current_multiplicity++;
+            n /= i;
+        }
+
+        if (current_multiplicity > m_multiplicity){
+            m_multiplicity = current_multiplicity;
+            m_del = i;
+        }
     }
 
-    cout << "Съедено " << res;
+    if (border == 1) cout << 1;
+    cout << endl << "У искомого делителя " << m_del << " степень " << m_multiplicity << endl;
 }
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
 
-    double a = 0; double l = 0;
-    while (a != -1 || l != -1) {
-        cin >> a >> l;
-//        doMagicYears(y);
-        doMagicGoat(a, l);
-        cout << "\n";
+    int n = 0;
+    while (n != -1) {
+        cin >> n;
+        doMagic(n);
     }
 
     return 0;
