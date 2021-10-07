@@ -39,9 +39,10 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 
     int n = 0;
+    cin >> n;
     while (n != -1) {
-        cin >> n;
         doMagic(n);
+        cin >> n;
     }
 
     return 0;
