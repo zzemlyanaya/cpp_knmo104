@@ -32,7 +32,7 @@ bool is_simple(int n) {
 }
 
 void solveSecond(int a, int b) {
-    if (is_simple(a) && is_simple(b) && abs(a-b) == 2){
+    if (abs(a-b) == 2 && is_simple(a) && is_simple(b)){
         cout << "Это числа-близнецы" << endl;
     }
     else {
@@ -59,7 +59,7 @@ void solveThird(int a, int b) {
 }
 
 bool can_part(int k, int n) {
-    int i = 1; int take = 0;
+    int i = 1; int take;
     bool can = false;
     do {
         k--;

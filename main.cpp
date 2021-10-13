@@ -3,36 +3,35 @@
 
 using namespace std;
 
+int p(int x, int a) {
+    if (a == 0) x = 1;
+    while (--a > 0) x *= x;
+    return x;
+}
+
 void doMagic(int n) {
-    int m_multiplicity = 1; int m_del = 1;
-    int i;
-    int border = n;
-    bool has_dels_out = false;
+    int ans = 0;
+    int len = 0; int i, j;
 
-    cout << n << " = ";
+    for (i=n; i > 0; i=i/10) len++;
+    len--;
 
-    for (i = 2; i <= border; i++) {
-        int current_multiplicity = 0;
+    if (n == 0) ans = 1;
 
-        while (n%i == 0) {
-            if (has_dels_out)
-                cout << " * " << i;
-            else
-                cout << i;
+    for (i=len; i >= 0; i--) {
+        int k1 = n/p(10, i) % max(10, p(10, i-1));
+        if (i == 0) k1 = n%10;
 
-            has_dels_out = true;
-            current_multiplicity++;
-            n /= i;
-        }
+        if (k1%2 == 0) ans++;
+        k1 = k1*p(10, i);
 
-        if (current_multiplicity > m_multiplicity){
-            m_multiplicity = current_multiplicity;
-            m_del = i;
+        for (j=i; j > 0; j--) {
+            int k2 = n%p(10, j);
+            if ((k1+k2)%2 == 0) ans++;
         }
     }
 
-    if (border == 1) cout << 1;
-    cout << endl << "У искомого делителя " << m_del << " степень " << m_multiplicity << endl;
+    cout << "Чётных чисел: " << ans << endl;
 }
 
 int main() {
