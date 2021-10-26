@@ -1,48 +1,68 @@
 #include <windows.h>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
-int p(int x, int a) {
-    if (a == 0) x = 1;
-    while (--a > 0) x *= x;
-    return x;
-}
-
-void doMagic(int n) {
-    int ans = 0;
-    int len = 0; int i, j;
-
-    for (i=n; i > 0; i=i/10) len++;
-    len--;
-
-    if (n == 0) ans = 1;
-
-    for (i=len; i >= 0; i--) {
-        int k1 = n/p(10, i) % max(10, p(10, i-1));
-        if (i == 0) k1 = n%10;
-
-        if (k1%2 == 0) ans++;
-        k1 = k1*p(10, i);
-
-        for (j=i; j > 0; j--) {
-            int k2 = n%p(10, j);
-            if ((k1+k2)%2 == 0) ans++;
-        }
+void convertZ(int a, int a_base, int b_base) {
+    int a10 = 0;
+    int power = 1;
+    while (a > 0) {
+        a10 += a%10 * power;
+        power = power * a_base;
+        a /= 10;
     }
 
-    cout << "Чётных чисел: " << ans << endl;
+    power = 1;
+    while (a10 >= power*b_base) power *= b_base;
+    while (power) {
+        cout << a10/power;
+        a10 -= power*(a10/power);
+        power /= b_base;
+    }
+}
+
+void convertR(int a, int a_base, int b_base) {
+    double a10 = 0;
+    int power = 1;
+    while (a >= power) power *= a_base;
+
+    while (a > 0) {
+        a10 += double (a%10) / power;
+        power /= a_base;
+        a /= 10;
+    }
+
+    int scale = 1;
+    while (a10 != 0 && scale < 5) {
+        a10 *= b_base;
+        cout << trunc(a10);
+        a10 = a10 - trunc(a10);
+        scale++;
+    }
+}
+
+void convert(double a, int a_base, int b_base) {
+    int aZ = trunc(a);
+    double aR = a-(double)aZ;
+    double temp = aR;
+    while (temp != 0) {
+        aR *= 10;
+        temp = aR-trunc(aR);
+    }
+
+    convertZ(aZ, a_base, b_base);
+    cout << ",";
+    convertR((int)aR, a_base, b_base);
 }
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
 
-    int n = 0;
-    cin >> n;
-    while (n != -1) {
-        doMagic(n);
-        cin >> n;
-    }
+    double a;
+    int a_base, b_base;
+    cin >> a >> a_base >> b_base;
+    convert(a, a_base, b_base);
 
     return 0;
 }
