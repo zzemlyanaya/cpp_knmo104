@@ -13,7 +13,7 @@ void solveFirst(double x, double eps) {
     double sum = 0;
     double f = 2;
     while (fabs(current) > eps) {
-        sum += x;
+        sum += current;
         current = -current*x*x/(3*f*(f+1));
         f += 2;
     }
@@ -49,15 +49,18 @@ int gcd (int a, int b) {
     return a+b;
 }
 
-void solveThird(int a, int b) {
+void solveThird(int a, int b) { // tests: 1/2, 1/3, 1/81, 1/5, 1/125, 335/113
     string z = "";
+    // sign
     int sa = a < 0 ? -1 : 1;
     int sb = b < 0 ? -1 : 1;
     if (sa * sb == -1) z += "-";
     a *= sa; b *= sb;
 
+    // real part
     z += to_string(a/b) + ".";
 
+    // to 10**k-ish form if possible, k = amount(2) + amount(5)
     while(b%2 == 0) {
         b = b / 2;
         a = a * 5;
@@ -67,16 +70,19 @@ void solveThird(int a, int b) {
         a = a * 2;
     }
 
+    // simplifying
     int c = gcd(a,b);
     a = a/c;
     b = b/c;
 
+    // now it a/1 if a/b can be turn into 10-ish, then a is the decimal part
     if (b == 1) {
         z += to_string(a);
         cout << z << endl;
         return;
     }
 
+    // if there is no period, reminder will be 0 after one division 'cause now gcd(a,b) = 1
     string period = "";
     if (a > b) {
         period = to_string((a - a % b) / b);
@@ -86,31 +92,33 @@ void solveThird(int a, int b) {
             cout << z << endl;
             return;
         }
+        // else assuming there is a certain period
         period = period + "(";
     } else {
         period = "(";
     }
 
+    // removing all the 10's powers
     while (a%10 == 0)
         a=a/10;
 
     int i = a;
-    while (true) {
+    while (true) { // period is less than k, where 10**k-a % b == 0 and k: 10**k >= b & 10**(k-1) < b
         int j = 0;
-        while (i < b) {
+        while (i < b) { // saving up i - 10's power for current rem
             i = i * 10;
             j = j + 1;
-            if (j > 1)
+            if (j > 1) // if i > i, there will be 0 in period
                 period += "0";
         }
 
-        int check = i - a;
+        int check = i - a; // if now 10**k-a % b == 0, we found the period
         if ((check % b) == 0) {
             period += to_string((check) / b);
             break;
         }
         else {
-            j = i % b;
+            j = i % b; // new rem
             period += to_string((i - j) / b);
             i = j;
         }
