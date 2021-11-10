@@ -1,53 +1,49 @@
 #include <windows.h>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-void doMagic(string input) {
-    string stack;
-    stack += input[0];
-    int sti = 0;
-    int n = input.length();
-
-    for (int  i = 1; i < n; i++) {
-        char cur = input[i];
-        switch (cur) {
-            case '(':
-            case '{':
-            case '[':
-            case '<': {
-                stack += cur;
-                sti++;
-                break;
-            }
-            case ')':
-            case '}':
-            case ']':
-            case '>': {
-                if (stack[sti] == cur-1 || stack[sti] == cur-2) {
-                    stack.pop_back();
-                    sti--;
-                }
-                else {
-                    cout << "Incorrect!" << endl;
-                    return;
-                }
-            }
-            default:
-                break;
+void doMagic(string s) {
+    string word_dels = " ,:;-";
+    string sent_dels = ".!? ";
+    int sent_count = 0, word_count = 0;
+    float lens_sum = 0;
+    int N = s.length();
+    int i = 0;
+    while(i < N) {
+        if (word_dels.find(s[i]) != -1) {
+            word_count++;
+            while (word_dels.find(s[i]) != -1) i++;
         }
+        else if (sent_dels.find(s[i]) != -1) {
+            word_count++;
+            lens_sum += word_count;
+            word_count = 0;
+            sent_count++;
+            while (sent_dels.find(s[i]) != -1) i++;
+        }
+        else if (i == N-1) {
+            word_count++;
+            lens_sum += word_count;
+            sent_count++;
+            i++;
+        }
+        else i++;
     }
-    cout << "Correct!" << endl;
+    float res = lens_sum / sent_count;
+    cout << "Средняя длина предложения в тексте: " << res << endl;
 }
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
 
-    string s;
-    cin >> s;
-    while (s != "-1") {
-        doMagic(s);
-        cin >> s;
+    string input;
+    getline(cin, input);
+    while (input != "-1") {
+        doMagic(input);
+        getline(cin, input);
     }
     return 0;
 }
