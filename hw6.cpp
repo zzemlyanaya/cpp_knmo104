@@ -25,6 +25,9 @@ void solveFirst(int n) {
     cout << "Все элементы уникальны" << endl;
 }
 
+// MMM = 3000
+// IV = 4
+// MCDLIXIV = 1463
 void solveSecond(int n) {
     int arabs[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
     string romes[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
@@ -50,7 +53,7 @@ void solveThird(string ar1, string ar2) {
     while (ar1[i] == ar2[m-i-1] && i <= m-i-1) i++;
     cout << "Это ";
     if (i < m-i-1) cout << "не ";
-    cout << "точные зеркальные близнецы";
+    cout << "точные зеркальные близнецы" << endl;
 }
 
 
@@ -75,6 +78,7 @@ int main() {
                 break;
             }
             case 3: {
+                cin.get();
                 getline(cin, s1);
                 getline(cin, s2);
                 solveThird(s1, s2);

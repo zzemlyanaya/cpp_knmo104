@@ -5,45 +5,40 @@
 using namespace std;
 
 void doMagic(string s) {
-    string word_dels = " ,:;-";
-    string sent_dels = ".!? ";
-    int sent_count = 0, word_count = 0;
-    float lens_sum = 0;
-    int N = s.length();
-    int i = 0;
-    while(i < N) {
-        if (word_dels.find(s[i]) != -1) {
-            word_count++;
-            while (word_dels.find(s[i]) != -1) i++;
-        }
-        else if (sent_dels.find(s[i]) != -1) {
-            word_count++;
-            lens_sum += word_count;
-            word_count = 0;
-            sent_count++;
-            while (sent_dels.find(s[i]) != -1) i++;
-        }
-        else if (i == N-1) {
-            word_count++;
-            lens_sum += word_count;
-            sent_count++;
-            i++;
-        }
-        else i++;
-    }
-    float res = lens_sum / sent_count;
-    cout << "Средняя длина предложения в тексте: " << res << endl;
+
 }
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 
-    string input;
-    getline(cin, input);
-    while (input != "-1") {
-        doMagic(input);
-        getline(cin, input);
+    int n, m;
+    cout << "Введите степени многочленов: " << endl;
+    cin >> n >> m;
+    cout << "Введите многочлены через enter: " << endl;
+
+    int P[100]{0}, Q[100]{0};
+    int R[201]{0};
+
+    for (int i = 0; i <= n; ++i) {
+        cin >> P[i];
     }
+    for (int i = 0; i <= m; ++i) {
+        cin >> Q[i];
+    }
+
+    for(int i = 0; i <= n; i++){
+        for(int j = 0; j <= m; j++){
+            R[i + j] += (P[i]*Q[j]);
+        }
+    }
+    for(int i = 0; i <= n+m; i++)
+        cout << R[i] << " ";
     return 0;
+
+    /** tests:
+     1 2 / 1 6 / 3 -5 2 -> 3 13 -28 12
+     1 2 / 3 5 / 5 -2 8 -> 15 19 14 40
+     3 3 / 1 1 1 1 / 1 1 0 1 -> 1 2 2 3 2 1 1
+     ***/
 }
