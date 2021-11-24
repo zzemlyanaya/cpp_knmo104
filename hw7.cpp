@@ -10,13 +10,13 @@
 
 using namespace std;
 
-void sort(double* a, double* b, double* c) {
-    if(*a>*b) swap(*a,*b);
-    if(*a>*c) swap(*a,*c);
-    if(*b>*c) swap(*b,*c);
+void sort(double &a, double &b, double &c) {
+    if(a>b) swap(a,b);
+    if(a>c) swap(a,c);
+    if(b>c) swap(b,c);
 }
 
-double dist(double a[], double b[]){
+double dist(double *a, double *b){
     return (a[0]-b[0])*(a[0]-b[0])+(a[1]-b[1])*(a[1]-b[1]);
 }
 
@@ -33,8 +33,9 @@ void solveFirst(int n) {
                 double a = dist(points[p1], points[p2]);
                 double b = dist(points[p2], points[p3]);
                 double c = dist(points[p1], points[p3]);
-                sort(&a, &b, &c);
+                sort(a, b, c);
                 double angle = acos((a+b-c)/(2*sqrt(a)*sqrt(b)))* 180.0 / PI;
+                if (angle == 180) continue;
                 if (c > a+b && angle > mangle) {
                     mangle = angle;
                     ma = sqrt(a); mb = sqrt(b); mc = sqrt(c);
