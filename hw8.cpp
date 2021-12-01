@@ -39,10 +39,19 @@ string solveThird(int n, int p) {
     return solveThird(n / p, p) + int_to_sym(n%p);
 }
 
-static int mmax(int A[], int i)
+static int mmax(int*A, int i)
 {
     if (i == 1) return A[0];
-    return max(mmax(A, i-1), A[i]); // не - - а, -1
+    return max(mmax(A, i-1), A[i-1]);
+}
+
+int func (int arr[], int n) {
+    static int max {};
+    if (n == 1)
+        max = arr[0];
+    else
+        max = (func(arr, n - 1) > arr[n-1]) ? max : arr[n-1];
+    return max;
 }
 
 void solveFourth(int n) {

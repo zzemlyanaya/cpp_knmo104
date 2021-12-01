@@ -13,14 +13,22 @@ int main() {
     SetConsoleCP(CP_UTF8);
 
     int n;
-    cout << "Введите степени многочленов: " << endl;
+    cout << "Введите порядок матрицы: " << endl;
     cin >> n;
-    cout << "Введите многочлен: " << endl;
+    cout << "Введите матрицу: " << endl;
 
-    int P[100]{0};
+    int a[100][100];
 
-    for (int i = 0; i <= n; ++i) {
-        cin >> P[i];
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cin >> a[i][j];
+        }
     }
+
+    bool upper = true;
+    for (int i = 0; i < n && upper; ++i) {
+        for (int j = 0; j < i && (upper = (0 == a[i][j])); ++j);
+    }
+    cout << upper;
     return 0;
 }
