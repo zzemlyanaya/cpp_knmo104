@@ -45,15 +45,6 @@ static int mmax(int*A, int i)
     return max(mmax(A, i-1), A[i-1]);
 }
 
-int func (int arr[], int n) {
-    static int max {};
-    if (n == 1)
-        max = arr[0];
-    else
-        max = (func(arr, n - 1) > arr[n-1]) ? max : arr[n-1];
-    return max;
-}
-
 void solveFourth(int n) {
     int a[100];
     for(int i = 0; i < n; i++) {
