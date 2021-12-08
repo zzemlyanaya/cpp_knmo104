@@ -36,6 +36,7 @@ void solveFirst(int n1, int n2, int m1, int m2) {
 }
 
 void solveSecond(int n, int m) {
+    float eps = 1e-7;
     float current = 0, row = 0;
     int counter = 0;
     for (int i = 0; i < n; ++i) {
@@ -44,7 +45,7 @@ void solveSecond(int n, int m) {
             cin >> current;
             row += current;
         }
-        if (row == 0) counter++;
+        if (abs(row) < eps) counter++;
     }
 
     cout << counter << endl;
