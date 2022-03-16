@@ -23,8 +23,12 @@ public:
     Polynome operator-(Polynome rgh);
     Polynome operator*(Polynome rgh);
     Polynome operator/(double t);
+    Polynome operator/(Polynome rgh);
 
-    bool isZero();
     double at(double x);
     Polynome derivative();
+
+private:
+    bool isZero();
+    void reduce();
 };

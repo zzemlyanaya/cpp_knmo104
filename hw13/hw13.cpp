@@ -3,12 +3,8 @@
 //
 
 #include "polynome.h"
-#include "windows.h"
-
 
 int main() {
-    SetConsoleOutputCP(CP_UTF8);
-
     int t;
 
     cout << "First polynome's deg:" << endl;
@@ -35,11 +31,12 @@ int main() {
     Polynome sum = p1+p2;
     Polynome dif = p1-p2;
     Polynome mul = p1*p2;
-    Polynome div = p1/t;
-    Polynome gcd = p1.gcd(&p2);
+    Polynome div_t = p1/t;
+    Polynome div = p1/p2;
 
     cout << "p1 + p2: " << sum;
     cout << "p1 - p2: " << dif;
     cout << "p1 * p2: " << mul;
+    cout << "p1 / t: " << div_t;
     cout << "p1 / p2: " << div;
 }

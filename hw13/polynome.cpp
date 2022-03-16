@@ -146,12 +146,23 @@ Polynome Polynome::operator/(double t) {
     return res;
 }
 
-bool Polynome::isZero() {
-    for (int i = 0; i < this->deg; i++){
-        if (this->coeff[i] != 0) return false;
+Polynome Polynome::operator/(Polynome rgh) {
+    Polynome temp = Polynome(this);
+    int res_deg = temp.deg - rgh.deg;
+    Polynome res = Polynome(res_deg);
+
+    for (int i = 0; i <= res_deg; i++) {
+        res.coeff[res_deg-i] = temp.coeff[temp.deg-i] / rgh.coeff[rgh.deg];
+
+        for (int j = 0; j <= rgh.deg; j++) {
+            temp.coeff[temp.deg-j-i] -= rgh.coeff[rgh.deg-j] * res.coeff[res_deg-i];
+        }
     }
-    return true;
+    temp.reduce();
+
+    return res;
 }
+
 
 double Polynome::at(double x) {
     double res = 0;
@@ -166,8 +177,24 @@ Polynome Polynome::derivative() {
     Polynome res = Polynome(this->deg-1);
     for (int i = 1; i <= this->deg; ++i) {
         res.coeff[i-1] = this->coeff[i];
-        if (i > 1) res.coeff[i-1]*= i-1;
+        if (i > 1) res.coeff[i-1]*= i;
     }
 
     return res;
+}
+
+bool Polynome::isZero() {
+    for (int i = 0; i <= this->deg; i++){
+        if (this->coeff[i] != 0) return false;
+    }
+    return true;
+}
+
+void Polynome::reduce() {
+    int tdeg = deg;
+    for (int i = deg; i > 0; i--) {
+        if (coeff[i] != 0) break;
+        else tdeg--;
+    }
+    deg = tdeg;
 }
