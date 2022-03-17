@@ -5,9 +5,9 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(main main.cpp)
 add_executable(random random.cpp)
 
-add_executable(class13
-        class13/class13.cpp
-        class13/geometry.h class13/geometry.cpp
+add_executable(class14 class14/class14.cpp
+        class14/Node.h class14/Node.cpp
+        class14/List.h class14/List.cpp
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(hw
