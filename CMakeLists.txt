@@ -5,14 +5,16 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(main main.cpp)
 add_executable(random random.cpp)
 
-add_executable(class14 class14/class14.cpp
+add_executable(class
+        class14/class14.cpp
         class14/Node.h class14/Node.cpp
         class14/List.h class14/List.cpp
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(hw
-        hw13/hw13.cpp
-        hw13/polynome.cpp hw13/polynome.h
+        hw14/hw14.cpp
+        hw14/Node.h hw14/Node.cpp
+        hw14/SparsePoly.cpp hw14/SparsePoly.h
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(ihw
