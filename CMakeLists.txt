@@ -6,9 +6,9 @@ add_executable(main main.cpp)
 add_executable(random random.cpp)
 
 add_executable(class
-        class14/class14.cpp
-        class14/Node.h class14/Node.cpp
-        class14/List.h class14/List.cpp
+        class15/class15.cpp
+        class15/Node.h class15/Node.cpp
+        class15/Dict.h class15/Dict.cpp
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(hw

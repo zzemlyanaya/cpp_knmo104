@@ -3,12 +3,12 @@
 //
 
 #include "SparsePoly.h"
-#include "windows.h"
+//#include "windows.h"
 
 using namespace std;
 
 int main() {
-    SetConsoleOutputCP(CP_UTF8);
+//    SetConsoleOutputCP(CP_UTF8);
 
     ifstream inputFile("input.txt");
     ofstream outputFile("output.txt");
