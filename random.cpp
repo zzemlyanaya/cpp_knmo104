@@ -7,26 +7,30 @@
 
 using namespace std;
 
-void swap(int* a, int* b) {
-    int t = *a;
-    *a = *b;
-    *b = t;
-}
+void sieve(int N) {
+    int n = N/32, k = 0;
+    int* ar = new int[n + 1];
 
-void quickSort(int* arr, int left, int right) {
-    int i = left, j = right;
-    int mid = arr[(left + right) / 2];
+    for (int i = 0; i <= n; ++i) ar[i] = 0xffff; // 65535
 
-    while (i <= j) {
-        while (arr[i] < mid) i++;
-        while (arr[j] > mid) j--;
+    for (int i = 2; i <= N; i++) {
+        if (ar[i / 32] & (0x8000 >> i % 32)) { // 32768
+            cout << i << " ";
 
-        if (i <= j) {
-            swap(&arr[i], &arr[j]);
-            i++;
-            j--;
+            for (int j= 2 * i; j <= N; j += i) ar[j / 32] &= ~0x8000 >> j % 32;
         }
     }
-    if (left < j) quickSort(arr, left, j);
-    if (i < right) quickSort(arr, i, right);
+
+    cout << endl;
+}
+
+int main() {
+
+    int N;
+    cout << "Input natural number to sieve or -1 to stop:\n";
+    while (cin >> N && N != -1) {
+        sieve(N);
+    }
+
+    return 0;
 }
