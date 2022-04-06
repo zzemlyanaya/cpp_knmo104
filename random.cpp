@@ -14,10 +14,10 @@ void sieve(int N) {
     for (int i = 0; i <= n; ++i) ar[i] = 0xffff; // 65535
 
     for (int i = 2; i <= N; i++) {
-        if (ar[i / 32] & (0x8000 >> i % 32)) { // 32768
+        if (ar[i >> 5] & (0x8000 >> (i & 31))) { // 32768
             cout << i << " ";
 
-            for (int j= 2 * i; j <= N; j += i) ar[j / 32] &= ~0x8000 >> j % 32;
+            for (int j= (i << 1); j <= N; j += i) ar[j >> 5] &= ~0x8000 >> (j & 31);
         }
     }
 
