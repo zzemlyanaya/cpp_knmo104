@@ -8,7 +8,7 @@
 using namespace std;
 
 void sieve(int N) {
-    int n = N/32, k = 0;
+    int n = N >> 5, k = 0;
     int* ar = new int[n + 1];
 
     for (int i = 0; i <= n; ++i) ar[i] = 0xffff; // 65535
