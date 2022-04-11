@@ -6,6 +6,23 @@
 
 using namespace std;
 
+void bitwise_sieve(int N) {
+    int n = N >> 5, k = 0;
+    int* ar = new int[n + 1];
+
+    for (int i = 0; i <= n; ++i) ar[i] = 0xffff; // 65535
+
+    for (int i = 2; i <= N; i++) {
+        if (ar[i >> 5] & (0x8000 >> (i & 31))) { // 32768
+            cout << i << " ";
+
+            for (int j= (i << 1); j <= N; j += i) ar[j >> 5] &= ~0x8000 >> (j & 31);
+        }
+    }
+
+    cout << endl;
+}
+
 vector<int> sieve(int n) {
     int i = 2;
     vector<int> num, ans;
