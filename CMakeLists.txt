@@ -6,7 +6,7 @@ add_executable(main main.cpp)
 add_executable(random random.cpp)
 
 add_executable(class
-        class16/class16.cpp
+        class17/class17.cpp
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(hw
