@@ -16,5 +16,5 @@ add_executable(hw
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(ihw
-        ihw2/ihw2.cpp
+        ihw3/ihw3.cpp
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
