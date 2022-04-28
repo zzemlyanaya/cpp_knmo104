@@ -18,17 +18,17 @@ int main() {
     SparsePoly p1 = SparsePoly();
     SparsePoly p2 = SparsePoly();
     int p1_deg, p2_deg;
-    Node* t = new Node();
+    SimpleNode* t = new SimpleNode();
 
     inputFile >> p1_deg;
     while (p1_deg--) {
         inputFile >> t;
-        p1.add(new Node(t));
+        p1.add(new SimpleNode(t));
     }
     inputFile >> p2_deg;
     while (p2_deg--) {
         inputFile >> t;
-        p2.add(new Node(t));
+        p2.add(new SimpleNode(t));
     }
 
     outputFile << "p1: " << &p1 << "p2: " << &p2;

@@ -5,17 +5,17 @@
 #include "Node.h"
 
 class SparsePoly {
-    Node* head;
-    Node* current;
+    SimpleNode* head;
+    SimpleNode* current;
 
     void sparse();
 
 public:
     SparsePoly();
 
-    Node* getHead();
+    SimpleNode* getHead();
     bool is_zero();
-    void add(Node* node);
+    void add(SimpleNode* node);
 
     friend std::ostream& operator<<(std::ostream& os, SparsePoly* p);
     SparsePoly operator+(SparsePoly rgh);

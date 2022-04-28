@@ -5,15 +5,15 @@
 #include <fstream>
 #include <iostream>
 
-struct Node {
+struct SimpleNode {
     int coeff;
     int deg;
-    Node* next;
+    SimpleNode* next;
 
-    Node();
-    Node(int deg);
-    Node(int deg, int coeff);
-    Node(Node* n);
+    SimpleNode();
+    SimpleNode(int deg);
+    SimpleNode(int deg, int coeff);
+    SimpleNode(SimpleNode* n);
 
-    friend std::istream& operator>>(std::istream& is, Node* n);
+    friend std::istream& operator>>(std::istream& is, SimpleNode* n);
 };

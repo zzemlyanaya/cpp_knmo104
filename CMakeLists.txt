@@ -6,7 +6,11 @@ add_executable(main main.cpp)
 add_executable(random random.cpp)
 
 add_executable(class
-        class17/class17.cpp
+        class18/class18.cpp
+        class18/SimpleNode.cpp class18/SimpleNode.h
+        class18/SimpleList.cpp class18/SimpleList.h
+        class18/ListNode.cpp class18/ListNode.h
+        class18/ListList.cpp class18/ListList.h
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(hw
