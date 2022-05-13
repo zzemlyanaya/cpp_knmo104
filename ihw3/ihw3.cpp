@@ -10,16 +10,17 @@ using namespace std;
 
 typedef double (*fun)(double, double);
 
-double f(double x, double eps) {
-//    double sum = 0, t = x;
-//    for (int n = 1; fabs(t) > eps; ++n) {
-//        sum += t;
-//        t *= x*x/(2*n*(2*n+1));
-//    }
-//
-//    return sum;
 
-    return 10-x;
+double f(double x, double eps) {
+    double sum = 0, t = x;
+    for (int n = 1; fabs(t) > eps; ++n) {
+        sum += t;
+        t *= x*x/(2*n*(2*n+1));
+    }
+
+    return sum;
+
+//    return 10-x;
 }
 
 double left_rectangles(double a, double b, double eps, fun f) {
