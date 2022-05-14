@@ -17,5 +17,5 @@ add_executable(hw
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(ihw
-        ihw3/ihw3.cpp
-        cmake-build-debug/input.txt cmake-build-debug/output.txt)
+        ihw4/ihw4.cpp
+        cmake-build-debug/input.txt cmake-build-debug/output.txt ihw4/Graph.cpp ihw4/Graph.h)
