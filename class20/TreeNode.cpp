@@ -52,7 +52,7 @@ bool TreeNode::is_balanced(TreeNode* root) {
 
     if (root == nullptr) return true;
 
-    lh = get_height(root->right);
+    lh = get_height(root->left);
     rh = get_height(root->right);
 
     if (abs(lh - rh) <= 1 && is_balanced(root->left) && is_balanced(root->right)) return true;

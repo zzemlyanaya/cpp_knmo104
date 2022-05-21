@@ -6,8 +6,7 @@ add_executable(main main.cpp)
 add_executable(random random.cpp)
 
 add_executable(class
-        class20/class20.cpp
-        class20/TreeNode.h class20/TreeNode.cpp
+        class21/class21.cpp
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(hw
