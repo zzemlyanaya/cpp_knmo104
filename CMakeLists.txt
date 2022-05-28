@@ -6,7 +6,9 @@ add_executable(main main.cpp)
 add_executable(random random.cpp)
 
 add_executable(class
-        class21/class21.cpp
+        class22/Stack.h class22/Stack.cpp
+        class22/class22.cpp
+        class22/CharUtils.cpp class22/CharUtils.h
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
 add_executable(hw
