@@ -8,6 +8,7 @@ add_executable(random random.cpp)
 add_executable(class
         class22/Stack.h class22/Stack.cpp
         class22/class22.cpp
+#        class21/class21.cpp
         class22/CharUtils.cpp class22/CharUtils.h
         cmake-build-debug/input.txt cmake-build-debug/output.txt)
 
